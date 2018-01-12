@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dezeseis_dp">16dp</dimen>
+    <dimen name="oito_dp">8dp</dimen>
+    <dimen name="oitenta_dp">80dp</dimen>
+    <dimen name="vinte_quatro_dp">24sp</dimen>
+    <dimen name="vinte_sp">20sp</dimen>
+    <dimen name="dezoito_sp">18sp</dimen>
+    <dimen name="quatorze_sp">14sp</dimen>
+    <dimen name="quarenta_cinco_dp">45dp</dimen>
+    <dimen name="noventa_dois_dp">92dp</dimen>
+    <dimen name="um_dp">1dp</dimen>
+</resources>

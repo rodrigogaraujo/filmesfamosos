@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Filmes Famososs</string>
+    <string name="trailers">Trailers:</string>
+    <string name="top_rated">TOP RATED</string>
+    <string name="most_popular">MOST POPULAR</string>
+    <string name="imagem_do_filme">Imagem do Filme</string>
+    <string name="favorite">FAVORITES</string>
+    <string name="error_uri">error na uri</string>
+    <string name="verify_connection">POR FAVOR, VERIFIQUE SUA CONEXÃO</string>
+    <string name="remove_favorites">REMOVIDO DOS FAVORITOS</string>
+    <string name="add_favorites">ADICIONADO AOS FAVORITOS</string>
+    <string name="ten">/10</string>
+    <string name="min">min</string>
+    <string name="reviews">Reviews</string>
+</resources>

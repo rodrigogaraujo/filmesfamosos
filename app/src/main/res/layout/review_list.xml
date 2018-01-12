@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/oito_dp"
+    android:layout_marginLeft="@dimen/dezeseis_dp"
+    android:layout_marginRight="@dimen/dezeseis_dp">
+
+    <TextView
+        android:paddingLeft="@dimen/dezeseis_dp"
+        android:id="@+id/tv_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/quatorze_sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:paddingLeft="@dimen/dezeseis_dp"
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dezoito_sp"/>
+</LinearLayout>
