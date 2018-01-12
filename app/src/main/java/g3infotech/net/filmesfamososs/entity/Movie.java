@@ -1,6 +1,5 @@
 package g3infotech.net.filmesfamososs.entity;
 
-import android.content.Loader;
 import android.os.Parcel;
 import android.os.Parcelable;
 

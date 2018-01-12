@@ -3,10 +3,7 @@ package g3infotech.net.filmesfamososs.tasks;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 

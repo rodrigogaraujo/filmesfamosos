@@ -1,7 +1,6 @@
 package g3infotech.net.filmesfamososs.tasks;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -11,7 +10,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import g3infotech.net.filmesfamososs.constants.Constants;

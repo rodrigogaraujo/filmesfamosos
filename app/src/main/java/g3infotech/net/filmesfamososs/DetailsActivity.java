@@ -4,15 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,15 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
@@ -39,11 +27,8 @@ import g3infotech.net.filmesfamososs.adapter.VideoAdapter;
 import g3infotech.net.filmesfamososs.constants.Constants;
 import g3infotech.net.filmesfamososs.data.MovieContract;
 import g3infotech.net.filmesfamososs.entity.Movie;
-import g3infotech.net.filmesfamososs.entity.Page;
-import g3infotech.net.filmesfamososs.entity.Video;
 import g3infotech.net.filmesfamososs.tasks.ReviewTasks;
 import g3infotech.net.filmesfamososs.tasks.VideoTasks;
-import g3infotech.net.filmesfamososs.util.NetworkUtil;
 import g3infotech.net.filmesfamososs.util.Utils;
 
 public class DetailsActivity extends AppCompatActivity {
