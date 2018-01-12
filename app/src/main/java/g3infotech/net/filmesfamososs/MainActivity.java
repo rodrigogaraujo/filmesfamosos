@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -29,6 +30,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import g3infotech.net.filmesfamososs.adapter.FilmAdapter;
 import g3infotech.net.filmesfamososs.constants.Constants;
 import g3infotech.net.filmesfamososs.data.MovieContract;
@@ -36,6 +39,7 @@ import g3infotech.net.filmesfamososs.entity.Movie;
 import g3infotech.net.filmesfamososs.entity.Page;
 import g3infotech.net.filmesfamososs.tasks.MovieTasks;
 import g3infotech.net.filmesfamososs.util.NetworkUtil;
+import g3infotech.net.filmesfamososs.util.Utils;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Movie>> {
 
@@ -44,44 +48,59 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     ProgressBar mProgressBar;
     LoaderManager mLoaderManager;
     Bundle mBundle;
+    Loader<List<Movie>> listLoader;
+    @BindView(R.id.tv_no_connection) TextView mTvConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         mRvFilmList = findViewById(R.id.rv_film_list);
         mProgressBar = findViewById(R.id.pb_load);
 
-        mBundle = new Bundle();
         mFilmAdapter = new FilmAdapter();
+        mBundle = new Bundle();
 
-        if (isConected()) {
-            mLoaderManager = getSupportLoaderManager();
-            Loader<List<Movie>> listLoader = mLoaderManager.getLoader(Constants.LOADER_ID);
+        mLoaderManager = getSupportLoaderManager();
+        listLoader = mLoaderManager.getLoader(Constants.LOADER_ID);
+
+        if (Utils.isConected(this)) {
             if (savedInstanceState != null) {
                 mBundle = savedInstanceState;
-            }
-
-            if (listLoader == null) {
+            }else{
                 mBundle.putString(Constants.TYPE_QUERY, Constants.QUERY.TYPE_POPULAR);
-                mLoaderManager.initLoader(Constants.LOADER_ID, mBundle, this);
-            } else {
-                mLoaderManager.restartLoader(Constants.LOADER_ID, mBundle, this);
             }
-        } else {
-            Toast.makeText(this, R.string.verify_connection, Toast.LENGTH_LONG).show();
+            verifyInitLoader(mLoaderManager);
+        }else{
+            mTvConnection.setVisibility(View.VISIBLE);
         }
 
         GridLayoutManager manager = new GridLayoutManager(this, 2);
         mRvFilmList.setLayoutManager(manager);
         mRvFilmList.setAdapter(mFilmAdapter);
+        mRvFilmList.setHasFixedSize(true);
+
         showLoading();
+    }
+
+    private void verifyInitLoader(LoaderManager manager) {
+        if (manager == null) {
+            mLoaderManager.initLoader(Constants.LOADER_ID, mBundle, this);
+        } else {
+            mLoaderManager.restartLoader(Constants.LOADER_ID, mBundle, this);
+        }
     }
 
     private void showLoading() {
         mRvFilmList.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void showData() {
+        mRvFilmList.setVisibility(View.VISIBLE);
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -97,37 +116,33 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         switch (id) {
             case R.id.top_rated:
                 mBundle.putString(Constants.TYPE_QUERY, Constants.QUERY.TYPE_TOP_RATED);
-                if (isConected()) {
-                    mLoaderManager.restartLoader(Constants.LOADER_ID, mBundle, this);
-                } else {
-                    Toast.makeText(this, R.string.verify_connection, Toast.LENGTH_LONG).show();
+                if (Utils.isConected(this)) {
+                    verifyInitLoader(mLoaderManager);
+                }else{
+                    showLoading();
+                    mTvConnection.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.most_popular:
                 mBundle.putString(Constants.TYPE_QUERY, Constants.QUERY.TYPE_POPULAR);
-                if (isConected()) {
-                    mLoaderManager.restartLoader(Constants.LOADER_ID, mBundle, this);
-                } else {
-                    Toast.makeText(this, R.string.verify_connection, Toast.LENGTH_LONG).show();
+                if (Utils.isConected(this)) {
+                    verifyInitLoader(mLoaderManager);
+                }else{
+                    showLoading();
+                    mTvConnection.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.favorite:
                 mBundle.putString(Constants.TYPE_QUERY, Constants.QUERY.TYPE_FAVORITES);
-                if (isConected()) {
-                    mLoaderManager.restartLoader(Constants.LOADER_ID, mBundle, this);
-                } else {
-                    Toast.makeText(this, R.string.verify_connection, Toast.LENGTH_LONG).show();
+                if (Utils.isConected(this)) {
+                    verifyInitLoader(mLoaderManager);
+                }else{
+                    showLoading();
+                    mTvConnection.setVisibility(View.VISIBLE);
                 }
                 break;
         }
         return true;
-    }
-
-    public boolean isConected() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info = cm.getActiveNetworkInfo();
-
-        return info != null && info.isConnectedOrConnecting();
     }
 
 
@@ -153,8 +168,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<Movie>> loader, List<Movie> data) {
         mFilmAdapter.setDataFilm(data);
-        mRvFilmList.setVisibility(View.VISIBLE);
-        mProgressBar.setVisibility(View.INVISIBLE);
+        showData();
     }
 
     @Override

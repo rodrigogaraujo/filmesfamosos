@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingBottom="8dp"
         android:id="@+id/rv_film_list"/>
@@ -19,5 +19,15 @@
         android:layout_height="@dimen/quarenta_cinco_dp"
         android:layout_gravity="center"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_no_connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sem_conexao_tente_novamente"
+        android:textSize="@dimen/dezoito_sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorError"
+        android:visibility="invisible"/>
 
 </LinearLayout>

@@ -13,7 +13,6 @@ public class Utils {
     public static boolean isConected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = cm.getActiveNetworkInfo();
-
         return info != null && info.isConnectedOrConnecting();
     }
 }

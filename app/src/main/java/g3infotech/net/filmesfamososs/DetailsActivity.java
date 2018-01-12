@@ -84,16 +84,18 @@ public class DetailsActivity extends AppCompatActivity {
         verifyConnection();
 
         try {
-            LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            mVideoAdapter = new VideoAdapter(mVideoTask.get());
-            mRecyclerViewVideos.setLayoutManager(manager);
-            mRecyclerViewVideos.setAdapter(mVideoAdapter);
-
-            LinearLayoutManager manager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            mReviewAdapter = new ReviewAdapter(mReviewTask.get());
-            mRecyclerViewReview.setLayoutManager(manager1);
-            mRecyclerViewReview.setAdapter(mReviewAdapter);
-
+            if(mVideoTask != null) {
+                LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                mVideoAdapter = new VideoAdapter(mVideoTask.get());
+                mRecyclerViewVideos.setLayoutManager(manager);
+                mRecyclerViewVideos.setAdapter(mVideoAdapter);
+            }
+            if(mReviewTask != null) {
+                LinearLayoutManager manager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                mReviewAdapter = new ReviewAdapter(mReviewTask.get());
+                mRecyclerViewReview.setLayoutManager(manager1);
+                mRecyclerViewReview.setAdapter(mReviewAdapter);
+            }
             if (verifyFavorite()) {
                 btnFavorite.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             }

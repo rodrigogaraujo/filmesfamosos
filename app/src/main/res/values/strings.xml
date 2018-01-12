@@ -12,4 +12,5 @@
     <string name="ten">/10</string>
     <string name="min">min</string>
     <string name="reviews">Reviews</string>
+    <string name="sem_conexao_tente_novamente">SEM CONEXAO, TENTE NOVAMENTE</string>
 </resources>
